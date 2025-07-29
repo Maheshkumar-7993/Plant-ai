@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 0 20px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .product-card {
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            color: #4caf50;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            color: #555;
+        }
+
+        .product-card .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .product-card button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Video Section */
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            width: 45%;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 10px;
+        }
+
+        .video-description {
+            color: #4caf50;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header style="background-color: #4caf50; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="flex-grow: 1; text-align: left;">
+            <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo" style="height: 50px; width: auto;">
+        </div>
+        <h1 style="color: white; margin: 0; text-align: center; flex-grow: 1;">Resources</h1>
+        <nav style="display: flex; gap: 20px;">
+            <a href="/" style="color: white; text-decoration: none;">Home</a>
+            <a href="/chatbot" style="color: white; text-decoration: none;">chatbot</a>
+            <a href="/contact" style="color: white; text-decoration: none;">Contact Us</a>
+            <a href="/about" style="color: white; text-decoration: none;">About Us</a>
+        </nav>
+    </header>
+    
+    <!-- Videos Section -->
+    <div class="video-container">
+        <!-- First Row of Videos -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/AGtazzeCIz8?si=ABGAw4vhmV_rtY-6" title="Organic Pest Control with Neem Oil"></iframe>
+            <div class="video-description">
+                Learn how to use organic neem oil to control pests naturally and protect your crops from harmful insects.
+            </div>
+        </div>
+        
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/QvZGOdc27zY?si=pNXdjR36-swIIBNy" title="How to Use Cold Pressed Neem Oil Effectively"></iframe>
+            <div class="video-description">
+                Discover the benefits of using cold-pressed neem oil as a natural pesticide for healthier plants and increased yield.
+            </div>
+        </div>
+
+        <!-- Second Row of Videos -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/6db7a5Hum_I?si=D3c3rh59hxiR291k" title="Neem Oil Benefits for Pest Control"></iframe>
+            <div class="video-description">
+                A detailed guide on how neem oil benefits your garden by controlling pests and promoting plant health.
+            </div>
+        </div>
+
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/4GYpcXncLCg?si=k1n1RwqNP-8W8cnM" title="Neem Oil DIY Pest Control Recipe"></iframe>
+            <div class="video-description">
+                Learn how to make your own neem oil pest control spray at home with easy-to-follow steps.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Pesticides eCommerce Store. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>

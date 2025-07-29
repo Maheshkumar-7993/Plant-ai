@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .header {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 50px;
+            width: auto;
+        }
+        .header nav {
+            display: flex;
+        }
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .header nav a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            margin-top: 30px;
+            font-size: 32px;
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .result-container {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .prediction {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+        .confidence {
+            font-size: 20px;
+            color: green;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #4caf50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Plant Logo and Navigation -->
+    <div class="header">
+        <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/support">Customer Support</a>
+            <a href="/chatbot">Chatbot</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <h1>Prediction Result</h1>
+
+    <!-- Display the uploaded image -->
+    <div class="result-container">
+        <img src="{{ image_path }}" alt="Uploaded Image">
+    </div>
+
+    <!-- Display the prediction -->
+    <div class="prediction">
+        <h2>Predicted Disease: {{ prediction }}</h2>
+    </div>
+
+    <!-- Display the confidence score -->
+    <div class="confidence">
+        <h3>Confidence: {{ confidence }}</h3>
+    </div>
+
+    <br>
+    <a href="/">Go Back</a>
+
+</body>
+</html>

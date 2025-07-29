@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PestMart</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 0 20px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .product-card {
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            color: #4caf50;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            color: #555;
+        }
+
+        .product-card .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .product-card button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header style="background-color: #4caf50; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="flex-grow: 1; text-align: left;">
+            <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo" style="height: 50px; width: auto;">
+        </div>
+        <h1 style="color: white; margin: 0; text-align: center; flex-grow: 1;">PestMart</h1>
+        <nav style="display: flex; gap: 20px;">
+            <a href="/" style="color: white; text-decoration: none;">Home</a>
+            <a href="/chatbot" style="color: white; text-decoration: none;">chatbot</a>
+            <a href="/contact" style="color: white; text-decoration: none;">Contact Us</a>
+            <a href="/about" style="color: white; text-decoration: none;">About Us</a>
+        </nav>
+    </header>
+    
+
+    <!-- Product Section -->
+    <div class="container">
+        <div class="product-card">
+            <img src="https://i.ibb.co/2tbMQ2h/img11.jpg" alt="Quick Greens Plant Guard">
+            <h3>Quick Greens Plant Guard (400ml)</h3>
+            <p>Ready to Use Organic Cold Pressed Neem Oil Spray for Indoor and Outdoor Plants. Removes Mealybugs, Fungus, and Other Pests.</p>
+            <p class="price">₹289.00 <span style="text-decoration: line-through; color: red;">₹450.00</span> - 36% off</p>
+            <button onclick="window.location.href='https://www.amazon.in/Pesticide-Natural-Bottles-Organic-Pressed/dp/B0BHKKFGB3?crid=3CAYQR56PJVA&dib=eyJ2IjoiMSJ9.wZp8R78maWngj4wKKHWjal0AFnonCyLWi14i5Md22EK4orEhZJmLli9UOvtGoB26z6MGzwSMffPaJmd0DJ2tIZXn-BMhT29XjB53e320FYL3PZ95bBQRTB7HnY9dxTsIDwPK4bLUQo4cjfbZOoKCeClUSWoJ0bUTpeR5GfHERY2lAnGkaVxQ3-IYloyiqUM5QKKYbjsLPxh2X3ojAocpQ3Eeiyr3jXw3pyBhA4dwd3TgTLHLHo68YgXh5w0ALbROyfKn7xXA25wXIbhncxIse-ywbk484NSPz8zOOXU43lZ3LMrmjIBpOxAvKDmRNlJmbWHauK8nIPoVc5nuPf6gGhBn4VBYz5tjKEFOyCV_9ZmHMCTMky70S8OwtRqx5lMhk0efNNSf4Y1FQmv88aV4cQeq90z-fFrFSybi3ilvgha87KW5Mnx-Ue5296_e2qbD.Hi6RYdkQ0SyqVrKnJGAe755L62-tiJhnEwibjdw_VRI'">Add to Cart</button>
+        </div>
+    
+        <div class="product-card">
+            <img src="https://i.ibb.co/j5jvg6f/img12.jpg" alt="Chipku Pure Cold Pressed Neem Oil">
+            <h3>Chipku Pure Cold Pressed Neem Oil (250ml)</h3>
+            <p>Removes Aphids, Fungus, Thrips, Mildew. Makes 50 Neem Spray Bottles.</p>
+            <p class="price">₹294.00 <span style="text-decoration: line-through; color: red;">₹350.00</span> - 16% off</p>
+            <button onclick="window.location.href='https://www.amazon.in/Chipku-Pressed-Soluble-Plants-Garden/dp/B08VRJLGL9?crid=3CAYQR56PJVA&dib=eyJ2IjoiMSJ9.wZp8R78maWngj4wKKHWjal0AFnonCyLWi14i5Md22EK4orEhZJmLli9UOvtGoB26z6MGzwSMffPaJmd0DJ2tIZXn-BMhT29XjB53e320FYL3PZ95bBQRTB7HnY9dxTsIDwPK4bLUQo4cjfbZOoKCeClUSWoJ0bUTpeR5GfHERY2lAnGkaVxQ3-IYloyiqUM5QKKYbjsLPxh2X3ojAocpQ3Eeiyr3jXw3pyBhA4dwd3TgTLHLHo68YgXh5w0ALbROyfKn7xXA25wXIbhncxIse-ywbk484NSPz8zOOXU43lZ3LMrmjIBpOxAvKDmRNlJmbWHauK8nIPoVc5nuPf6gGhBn4VBYz5tjKEFOyCV_9ZmHMCTMky70S8OwtRqx5lMhk0efNNSf4Y1FQmv88aV4cQeq90z-fFrFSybi3ilvgha87KW5Mnx-Ue5296_e2qbD.Hi6RYdkQ0SyqVrKnJGAe755L62-tiJhnEwibjdw_VRI'">Add to Cart</button>
+        </div>
+    
+        <div class="product-card">
+            <img src="https://i.ibb.co/nbWP02M/img14.jpg" alt="Go Garden Trichoderma Bio Fungicide">
+            <h3>Go Garden Trichoderma Bio Fungicide (450g)</h3>
+            <p>Prevents Fungal and Bacterial Diseases in Plants.</p>
+            <p class="price">₹208.00 <span style="text-decoration: line-through; color: red;">₹298.00</span> - 30% off</p>
+            <button onclick="window.location.href='https://www.amazon.in/Go-Garden-Trichoderma-Fungicide-plants/dp/B0C7CMWKJ1?crid=3CAYQR56PJVA&dib=eyJ2IjoiMSJ9.wZp8R78maWngj4wKKHWjal0AFnonCyLWi14i5Md22EK4orEhZJmLli9UOvtGoB26z6MGzwSMffPaJmd0DJ2tIZXn-BMhT29XjB53e320FYL3PZ95bBQRTB7HnY9dxTsIDwPK4bLUQo4cjfbZOoKCeClUSWoJ0bUTpeR5GfHERY2lAnGkaVxQ3-IYloyiqUM5QKKYbjsLPxh2X3ojAocpQ3Eeiyr3jXw3pyBhA4dwd3TgTLHLHo68YgXh5w0ALbROyfKn7xXA25wXIbhncxIse-ywbk484NSPz8zOOXU43lZ3LMrmjIBpOxAvKDmRNlJmbWHauK8nIPoVc5nuPf6gGhBn4VBYz5tjKEFOyCV_9ZmHMCTMky70S8OwtRqx5lMhk0efNNSf4Y1FQmv88aV4cQeq90z-fFrFSybi3ilvgha87KW5Mnx-Ue5296_e2qbD.Hi6RYdkQ0SyqVrKnJGAe755L62-tiJhnEwibjdw_VRI'">Add to Cart</button>
+        </div>
+    
+        <div class="product-card">
+            <img src="https://i.ibb.co/qgTFHt6/img3.jpg" alt="Go Garden Water Soluble Neem Oil">
+            <h3>Go Garden Water Soluble Neem Oil (100ml)</h3>
+            <p>Organic Pesticide for Plants. Effective for Plants Insects Control.</p>
+            <p class="price">₹135.00 <span style="text-decoration: line-through; color: red;">₹400.00</span> - 66% off</p>
+            <button onclick="window.location.href='https://www.amazon.in/Garden-Water-Soluble-Plant-Control/dp/B09NTR9M2C?crid=3CAYQR56PJVA&dib=eyJ2IjoiMSJ9.wZp8R78maWngj4wKKHWjal0AFnonCyLWi14i5Md22EK4orEhZJmLli9UOvtGoB26z6MGzwSMffPaJmd0DJ2tIZXn-BMhT29XjB53e320FYL3PZ95bBQRTB7HnY9dxTsIDwPK4bLUQo4cjfbZOoKCeClUSWoJ0bUTpeR5GfHERY2lAnGkaVxQ3-IYloyiqUM5QKKYbjsLPxh2X3ojAocpQ3Eeiyr3jXw3pyBhA4dwd3TgTLHLHo68YgXh5w0ALbROyfKn7xXA25wXIbhncxIse-ywbk484NSPz8zOOXU43lZ3LMrmjIBpOxAvKDmRNlJmbWHauK8nIPoVc5nuPf6gGhBn4VBYz5tjKEFOyCV_9ZmHMCTMky70S8OwtRqx5lMhk0efNNSf4Y1FQmv88aV4cQeq90z-fFrFSybi3ilvgha87KW5Mnx-Ue5296_e2qbD.Hi6RYdkQ0SyqVrKnJGAe755L62-tiJhnEwibjdw_VRI'">Add to Cart</button>
+        </div>
+    </div>
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Pesticides eCommerce Store. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>

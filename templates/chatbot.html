@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Protect Chatbot</title>
+  <style>
+    /* Same styles as before */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    .header {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header img {
+    height: 50px; /* Adjust the height to fit the logo size */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits without distortion */
+    display: block;
+  }
+    .header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    
+    .header nav a:hover {
+      text-decoration: underline;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    .chat-container h2 {
+      margin: 0;
+      color: #333;
+    }
+    .chat-messages {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      height: 300px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+      margin-top: 20px;
+    }
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    .message p {
+      margin: 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background-color: #e0e0e0;
+    }
+    .message.user p {
+      background-color: #4caf50;
+      color: white;
+      margin-left: auto;
+    }
+    .message.bot p {
+      background-color: #f1f1f1;
+    }
+    .chat-input {
+      margin-top: 15px;
+      display: flex;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .chat-input button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .chat-input button:hover {
+      background-color: #45a049;
+    }
+    .footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #f1f1f1;
+      margin-top: 50px;
+      color: #777;
+    }
+    .footer a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/contact">Customer Support</a>
+      <a href="/diseases">Diseases Info</a>
+    </nav>
+  </div>
+
+  <div class="chat-container">
+    <h2>Plant Protect Chatbot</h2>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Ask your question...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Plant Protect. All rights reserved. <a href="/contact">Contact Us</a>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+  
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+  
+      appendMessage('user', message);
+      userInput.value = '';
+  
+      const botResponse = getBotResponse(message);
+      appendMessage('bot', botResponse);
+    }
+  
+    function appendMessage(sender, text) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', sender);
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  
+    // List of stopwords to ignore
+    const stopwords = ["the", "is", "at", "which", "on", "a", "an", "and", "in", "of", "to", "about", "for", "this", "that"];
+  
+    // Example responses object with disease data
+    const responses = {
+      "apple apple scab": {
+    response: "Apple scab is a fungal disease caused by *Venturia inaequalis* that affects apples and crab apples. It typically appears as dark, sunken lesions on the fruit and irregular spots on the leaves, which can lead to premature leaf drop. The fruit may also develop a rough, scabby appearance, affecting its marketability.",
+    detection: "Apple scab can be detected by the characteristic dark, olive-brown lesions that appear on the fruit and leaves, often surrounded by yellowing.",
+    cure: "Treatment involves applying fungicides, especially during the spring when the weather is cool and moist, as this is the prime time for infection. It’s also important to remove infected leaves and fruit from the tree to reduce the spread of the disease. Resistant varieties of apples can also be planted for long-term control.",
+    danger: "If left untreated, apple scab can significantly reduce the quality and yield of the apple crop, making it a serious concern for apple orchards."
+  },
+  
+  "apple black rot": {
+    response: "Apple black rot, caused by *Fusarium* species, leads to dark lesions on apple fruit, starting from the blossom end. This disease spreads quickly, especially in warm, moist conditions, and can lead to the entire fruit rotting.",
+    detection: "Infected fruit will show black, sunken lesions, often accompanied by a foul smell. The fruit will rot quickly, and the affected areas become dark and mushy.",
+    cure: "Fungicides can help manage apple black rot, but it's crucial to remove and destroy affected fruits and leaves to limit further spread. Pruning and ensuring proper air circulation within the tree canopy can also prevent excess moisture buildup, which fosters fungal growth.",
+    danger: "This disease can lead to total crop loss if not managed, especially in high humidity or rainfall conditions. It’s highly destructive to apple crops."
+  },
+
+  "apple cedar apple rust": {
+    response: "Cedar apple rust is a fungal disease caused by *Gymnosporangium juniperi-virginianae*. It affects apple trees, causing bright yellow or orange spots on the upper surface of leaves and leading to premature leaf drop.",
+    detection: "This disease can be recognized by the orange, spore-producing structures that appear on the undersides of the leaves, while the upper surface develops yellow or orange spots.",
+    cure: "Fungicides are effective in managing cedar apple rust, especially during the early spring when the disease is active. Pruning nearby juniper trees (alternate host) and removing infected leaves also help control the spread.",
+    danger: "Cedar apple rust can weaken the tree by causing defoliation and reducing fruit production, but it typically doesn’t kill the tree. However, it can severely affect apple yields."
+  },
+
+  "apple healthy": {
+    response: "A healthy apple tree has vibrant green leaves, strong growth, and produces good-quality fruit. Maintaining proper care through regular watering, disease prevention, and pest control ensures longevity and optimal harvest.",
+    detection: "Healthy apple trees show no signs of disease, such as discolored leaves, abnormal growth, or rotting fruit.",
+    cure: "To maintain a healthy apple tree, provide appropriate water, sunlight, and nutrients. Prune regularly and manage pests and diseases early.",
+    danger: "A healthy apple tree is not a threat. However, any disruption in care could lead to susceptibility to various diseases like apple scab or black rot."
+  },
+
+  "blueberry healthy": {
+    response: "A healthy blueberry plant has rich green foliage and vibrant berries. Proper care involves ensuring the plant receives adequate sunlight, water, and protection from pests.",
+    detection: "Healthy blueberry plants have strong, green leaves and produce full, plump berries. There are no signs of wilting or discoloration.",
+    cure: "To maintain blueberry health, provide well-drained acidic soil, regular watering, and protection from common pests like aphids.",
+    danger: "Healthy blueberry plants are not harmful, but improper care can lead to problems such as leaf spots or fruit rot."
+  },
+
+  "cherry(including sour) powdery mildew": {
+    response: "Powdery mildew is a fungal disease that causes a white, powdery coating on leaves, stems, and buds of cherry trees. This disease thrives in warm, dry conditions.",
+    detection: "The presence of white, powdery fungal growth on leaves, stems, and flowers is the primary indicator of powdery mildew. Infected parts may also become deformed or stunted.",
+    cure: "Use fungicides to control powdery mildew, and remove infected plant material. Prune the tree to improve air circulation and avoid excessive moisture.",
+    danger: "While powdery mildew does not kill trees outright, it can reduce fruit yield and quality, and weaken the plant, making it more susceptible to other diseases."
+  },
+
+  "cherry(including sour) healthy": {
+    response: "Healthy cherry trees are characterized by strong growth, green foliage, and the production of high-quality fruit. Proper care, including adequate watering and pest management, is key to keeping the tree healthy.",
+    detection: "Healthy cherry trees show no signs of disease, with vibrant green leaves and firm fruit. There are no abnormal growth patterns or discoloration.",
+    cure: "Maintain cherry health by ensuring it receives the right amount of sunlight, water, and nutrients. Regularly check for pests or diseases to prevent issues.",
+    danger: "A healthy cherry tree poses no danger and can thrive with the right care. Without proper attention, however, it could fall prey to diseases like powdery mildew or bacterial spot."
+  },
+
+  "corn (maize) cercospora leaf spot gray leaf spot": {
+    response: "Cercospora leaf spot, caused by *Cercospora zeae-maydis*, leads to gray lesions on the leaves of maize plants. This disease can cause premature leaf drop and yield reduction.",
+    detection: "Look for small, round to irregularly shaped gray or tan lesions with dark borders on the leaves. The lesions may enlarge, causing the leaves to yellow and fall off.",
+    cure: "Fungicides can help manage Cercospora leaf spot, especially during the early stages of infection. Removing infected leaves and using resistant maize varieties is also effective.",
+    danger: "While not as deadly as other diseases, it can lead to reduced photosynthesis and significant yield losses, especially in heavily affected fields."
+  },
+
+  "corn (maize) common rust": {
+    response: "Common rust, caused by *Puccinia sorghi*, is a fungal disease that affects maize, causing reddish-brown pustules on the leaves. The disease reduces photosynthesis, weakening the plant.",
+    detection: "Look for reddish-brown pustules on the leaves, typically on the upper sides. These pustules will break open and release spores, causing the disease to spread.",
+    cure: "Apply fungicides when rust pustules first appear, and use resistant maize varieties. Crop rotation and proper spacing can reduce the spread of rust.",
+    danger: "While not usually lethal, common rust can reduce maize yields significantly by decreasing photosynthetic efficiency."
+  },
+
+  "corn (maize) northern leaf blight": {
+    response: "Northern leaf blight, caused by *Exserohilum turcicum*, causes large, long, grayish lesions on maize leaves. The disease can cause extensive leaf loss if not controlled.",
+    detection: "Infected leaves develop large, oval-shaped lesions that are grayish-green and later turn brown. The lesions may become surrounded by yellow tissue.",
+    cure: "Northern leaf blight can be managed with fungicides, especially if applied early in the disease cycle. Removing infected plant material and rotating crops are also effective control measures.",
+    danger: "If left untreated, northern leaf blight can reduce photosynthesis, lower yields, and sometimes cause plant death in severe cases."
+  },
+
+  "corn (maize) healthy": {
+    response: "A healthy maize plant is robust with deep green leaves and strong, upright growth. It produces ears of corn with well-formed kernels.",
+    detection: "Healthy maize plants have strong growth, no signs of discoloration or disease on leaves, and a high yield of corn.",
+    cure: "To maintain a healthy maize plant, ensure proper watering, soil fertility, and pest control. Avoid overwatering and ensure sufficient spacing for good airflow.",
+    danger: "A healthy maize plant poses no threat but can become susceptible to pests and diseases without proper care."
+  },
+
+  "grape black rot": {
+    response: "Grape black rot, caused by *Guignardia bidwellii*, affects grapevines, causing dark, sunken lesions on fruit and leaves. The disease is most common in humid conditions.",
+    detection: "Look for dark, sunken lesions on the fruit, starting at the blossom end. The disease spreads rapidly and affects the entire grape cluster, causing premature rotting.",
+    cure: "Remove and destroy infected fruit, and apply fungicides as needed. Maintaining good airflow through the vine canopy and avoiding excessive moisture can reduce the risk of infection.",
+    danger: "If not controlled, black rot can devastate grape yields, especially in vineyards with poor airflow or frequent rainfall."
+  },
+
+  "grape esca (black measles)": {
+    response: "Esca, also known as black measles, is a complex disease caused by multiple fungal pathogens. It affects grapevines, leading to black streaks in the wood and premature leaf drop.",
+    detection: "Signs include yellowing of the leaves followed by black streaks and spots, which eventually lead to leaf drop. Infected wood may have dark streaks.",
+    cure: "Esca is difficult to manage once established, but removing infected wood and using fungicides can help control the spread. Pruning for proper vine health can also reduce the risk.",
+    danger: "Esca can kill the vine in severe cases, especially when the disease spreads through the trunk, making it a significant threat to grapevines."
+  },
+
+  "grape leaf blight (Isariopsis Leaf Spot)": {
+    response: "Grape leaf blight, caused by *Isariopsis* species, causes small, circular lesions on grapevine leaves, reducing the plant's ability to photosynthesize.",
+    detection: "Look for small, circular lesions with a dark edge and pale center on the leaves. The lesions may cause early defoliation.",
+    cure: "Fungicides can be applied during the growing season to control leaf blight. Pruning infected leaves and ensuring proper air circulation helps prevent the spread.",
+    danger: "While not typically lethal, grape leaf blight can reduce grapevine health and yield if left unmanaged."
+  },
+
+  "grape healthy": {
+    response: "A healthy grapevine is strong, with vibrant green leaves and abundant clusters of fruit. Proper care, including pruning, pest management, and adequate watering, is key to maintaining vine health.",
+    detection: "Healthy grapevines show no signs of disease, with firm fruit, strong growth, and no abnormal discoloration on leaves.",
+    cure: "To maintain healthy grapevines, ensure they receive proper sunlight, water, and nutrients. Prune regularly and protect from pests.",
+    danger: "A healthy grapevine is not harmful but can be susceptible to diseases such as black rot or esca if not properly cared for."
+  },
+
+  "orange Huanglongbing (Citrus greening)": {
+    response: "Citrus greening (HLB), caused by *Candidatus Liberibacter asiaticus*, is a devastating bacterial disease that affects citrus trees. It causes yellowing leaves, misshapen fruit, and reduced yields.",
+    detection: "Symptoms include yellowing leaves with green veins, bitter, misshapen fruit, and premature fruit drop. Infected trees often show stunted growth.",
+    cure: "Currently, there is no cure for HLB. Management focuses on controlling the vector (Asian citrus psyllid) with insecticides and removing infected trees to prevent the spread.",
+    danger: "HLB is a major threat to the citrus industry worldwide, as it weakens trees and eventually kills them, making it one of the most dangerous diseases for citrus crops."
+  },
+
+  "peach bacterial spot": {
+    response: "Peach bacterial spot is caused by *Xanthomonas campestris* and leads to round, dark lesions on peach fruit and leaves.",
+    detection: "Symptoms include small, dark lesions on fruit and leaves, often surrounded by yellowing. Infected fruit may become misshapen and unmarketable.",
+    cure: "Use copper-based bactericides and ensure proper orchard sanitation. Removing infected fruit and pruning to improve airflow can also reduce the spread of the disease.",
+    danger: "While not fatal to trees, bacterial spot can significantly reduce fruit quality and yield, making it a serious concern for peach growers."
+  },
+
+  "peach healthy": {
+    response: "A healthy peach tree has vibrant green foliage, strong branches, and produces good-quality fruit. Proper care includes watering, pest control, and seasonal pruning.",
+    detection: "Healthy peach trees show no signs of disease, with firm fruit and healthy green leaves.",
+    cure: "To maintain health, ensure proper watering, nutrients, and pest control. Regular pruning improves air circulation and reduces the risk of fungal infections.",
+    danger: "A healthy peach tree poses no threat but requires consistent care to avoid pests or diseases like bacterial spot or leaf curl."
+  },
+
+  "pepper bacterial spot": {
+    response: "Bacterial spot in peppers is caused by *Xanthomonas campestris* and leads to water-soaked lesions on the fruit and leaves.",
+    detection: "Look for small, dark, water-soaked lesions on the leaves and fruit, which can eventually turn brown and cause fruit rot.",
+    cure: "Bactericides, particularly copper-based ones, can help control bacterial spot. Crop rotation and removing infected material are important for long-term control.",
+    danger: "Bacterial spot can severely affect fruit quality and yield, especially in wet and humid conditions. If not controlled, it can render the crop unmarketable."
+  },
+
+  "pepper healthy": {
+    response: "A healthy pepper plant has dark green leaves, strong growth, and produces firm, unblemished fruit. Regular care, including pest management and watering, helps maintain plant health.",
+    detection: "Healthy pepper plants have no signs of disease, with no lesions or discoloration on the leaves or fruit.",
+    cure: "To keep peppers healthy, provide consistent watering, use balanced fertilizers, and manage pests and diseases early.",
+    danger: "A healthy pepper plant is not dangerous, but neglecting care can lead to diseases like bacterial spot or aphid infestation."
+  },
+
+  "potato early blight": {
+    response: "Early blight, caused by *Alternaria solani*, leads to dark lesions on potato leaves and stems, weakening the plant and reducing yields.",
+    detection: "Look for dark, irregular lesions with concentric rings on the lower leaves, followed by yellowing and defoliation.",
+    cure: "Use fungicides like chlorothalonil and remove infected leaves to reduce disease spread. Crop rotation and improving air circulation can also help.",
+    danger: "While not as severe as late blight, early blight can still reduce yields significantly and make potatoes unmarketable."
+  },
+
+  "potato late blight": {
+    response: "Late blight, caused by *Phytophthora infestans*, is one of the most destructive diseases for potatoes, leading to rapid plant death with lesions on leaves, stems, and tubers.",
+    detection: "Symptoms include water-soaked lesions on leaves that turn dark brown and spread rapidly. Tubers show dark, rotting areas.",
+    cure: "Late blight can be controlled with systemic fungicides and by removing infected plant material. Infected plants should be destroyed immediately to prevent spread.",
+    danger: "Late blight is highly dangerous to potatoes, causing rapid defoliation and tuber rot, which can result in total crop loss."
+  },
+
+  "potato healthy": {
+    response: "Healthy potatoes are characterized by vibrant green foliage, strong stems, and uniform, blemish-free tubers.",
+    detection: "Healthy potato plants have strong growth and no signs of disease or pest infestation.",
+    cure: "To maintain potato health, ensure good soil drainage, proper watering, and timely pest control.",
+    danger: "A healthy potato plant is not a threat, but poor care can lead to diseases like early blight or late blight."
+  },
+  "raspberry healthy": {
+    response: "A healthy raspberry plant has vibrant green leaves and produces good-quality fruit. Regular pruning, proper watering, and pest management are key to maintaining its health.",
+    detection: "Healthy raspberry plants have no signs of disease, with firm fruit and green foliage. There are no lesions or discoloration.",
+    cure: "To keep raspberries healthy, ensure adequate watering, provide balanced nutrition, and protect from pests like aphids.",
+    danger: "A healthy raspberry plant is not harmful, but neglect can lead to diseases like leaf spot or powdery mildew."
+  },
+
+  "soybean healthy": {
+    response: "A healthy soybean plant has strong, green leaves, and well-formed pods. Regular care, including proper watering, pest management, and weed control, is essential.",
+    detection: "Healthy soybean plants show no signs of disease or stress, with vibrant green foliage and smooth, full pods.",
+    cure: "To maintain soybean health, provide sufficient water, nutrients, and control weeds and pests early.",
+    danger: "A healthy soybean plant poses no threat, but poor care can lead to diseases like rust or blight."
+  },
+
+  "squash powdery mildew": {
+    response: "Powdery mildew, caused by *Erysiphe cichoracearum*, is a fungal disease that affects squash plants, causing a white powdery coating on the leaves, stems, and fruit.",
+    detection: "Look for a white, powdery fungal growth on the upper side of leaves and stems. Infected leaves may become deformed, yellow, and die.",
+    cure: "Use fungicides to control powdery mildew, and prune affected parts of the plant to improve airflow. Regularly check for early signs of the disease and remove infected leaves.",
+    danger: "Powdery mildew can weaken the plant, reduce photosynthesis, and reduce squash yield, but it is rarely fatal."
+  },
+
+  "strawberry leaf scorch": {
+    response: "Leaf scorch in strawberries is caused by various factors, including water stress, high temperatures, or fungal infections. It results in browning and scorching of the leaf edges.",
+    detection: "Symptoms include brown, scorched edges on leaves, often accompanied by a yellowing between the veins.",
+    cure: "Ensure consistent watering and mulch around the plants to maintain moisture. If fungal infection is suspected, use appropriate fungicides.",
+    danger: "While leaf scorch is rarely fatal, it can weaken the plant and reduce fruit production if not managed."
+  },
+
+  "strawberry healthy": {
+    response: "A healthy strawberry plant has vibrant green leaves, strong runners, and produces bright, red fruit. Proper care, including adequate watering, fertilization, and pest control, is essential.",
+    detection: "Healthy strawberry plants have strong, green foliage and no signs of disease or pest damage.",
+    cure: "To maintain strawberry health, water consistently, fertilize regularly, and protect from pests like aphids and slugs.",
+    danger: "A healthy strawberry plant poses no threat, but neglect can lead to diseases like leaf scorch or powdery mildew."
+  },
+
+  "tomato bacterial spot": {
+    response: "Bacterial spot, caused by *Xanthomonas campestris*, leads to water-soaked lesions on the leaves and fruit of tomato plants, causing reduced yield and quality.",
+    detection: "Infected plants show small, dark, water-soaked spots on leaves and fruit, which may turn yellow and enlarge over time.",
+    cure: "Use copper-based bactericides to control bacterial spot. Remove and destroy infected plant material, and practice crop rotation to reduce the spread.",
+    danger: "Bacterial spot can significantly reduce fruit quality and yield if not controlled, making it a major concern for tomato growers."
+  },
+
+  "tomato early blight": {
+    response: "Early blight, caused by *Alternaria solani*, affects tomatoes by causing dark lesions on leaves and stems, leading to premature leaf drop and reduced yields.",
+    detection: "Look for round, dark lesions with concentric rings on lower leaves. Infected leaves may yellow and fall off, weakening the plant.",
+    cure: "Use fungicides to manage early blight, especially during the growing season. Remove infected leaves and practice crop rotation to prevent future infections.",
+    danger: "While not typically fatal, early blight can severely reduce tomato yields and fruit quality if not managed."
+  },
+
+  "tomato late blight": {
+    response: "Late blight, caused by *Phytophthora infestans*, is a highly destructive disease in tomatoes. It causes dark, water-soaked lesions on leaves, stems, and fruit, leading to rapid plant death.",
+    detection: "Late blight appears as dark, water-soaked lesions on leaves that spread quickly. Infected fruit shows dark, rotting areas. The disease can spread rapidly in humid conditions.",
+    cure: "Late blight can be controlled using systemic fungicides. Infected plants should be removed immediately, and crop rotation is important to prevent recurrence.",
+    danger: "Late blight is a dangerous and fast-spreading disease that can destroy entire crops if not quickly controlled."
+  },
+
+  "tomato leaf mold": {
+    response: "Leaf mold, caused by *Cladosporium fulvum*, affects tomato plants, causing yellowish lesions on leaves, which can lead to early defoliation and reduced photosynthesis.",
+    detection: "Infected leaves develop yellow patches that eventually turn brown. The undersides of leaves may show a grayish fungal growth.",
+    cure: "Use fungicides to control leaf mold, and remove infected leaves to reduce the spread. Ensure proper spacing for air circulation and avoid overhead watering.",
+    danger: "Leaf mold can weaken the plant and reduce yield but is less destructive than late blight."
+  },
+
+  "tomato septoria leaf spot": {
+    response: "Septoria leaf spot, caused by *Septoria lycopersici*, causes small, circular spots on tomato leaves, eventually leading to premature defoliation.",
+    detection: "Look for small, dark lesions with a pale center on the lower leaves. The disease causes the leaves to yellow and fall off, reducing plant vitality.",
+    cure: "Fungicides can help control septoria leaf spot, especially during the growing season. Prune infected leaves and practice crop rotation to prevent recurrence.",
+    danger: "While septoria leaf spot can reduce tomato yields and vigor, it rarely kills the plant."
+  },
+
+  "tomato spider mites two-spotted spider mite": {
+    response: "The two-spotted spider mite (*Tetranychus urticae*) is a pest that causes yellowing and stippling on tomato leaves by feeding on plant juices.",
+    detection: "Infected plants show a speckled appearance on leaves, with yellowish or white spots. Severe infestations may cause the leaves to curl and drop.",
+    cure: "Acaricides can control spider mites, but natural predators like ladybugs can also help manage the population. Maintain good plant health to make plants more resistant to mites.",
+    danger: "Spider mites can weaken the plant and reduce yields if left unchecked, especially in dry, hot conditions."
+  },
+
+  "tomato target spot": {
+    response: "Target spot, caused by *Corynespora cassiicola*, leads to circular lesions with concentric rings on tomato leaves. These spots can lead to defoliation and reduced fruit quality.",
+    detection: "Infected leaves develop circular, dark spots with light centers. The disease spreads quickly in warm, humid conditions.",
+    cure: "Fungicides are effective in controlling target spot. Removing infected leaves and practicing crop rotation can also reduce the spread of the disease.",
+    danger: "Target spot can reduce tomato yields and fruit quality, making it an important disease to control in tomato fields."
+  },
+
+  "tomato tomato yellow leaf curl virus": {
+    response: "Tomato yellow leaf curl virus (TYLCV) is a viral disease spread by whiteflies. It causes yellowing, curling, and stunting of tomato leaves, along with poor fruit production.",
+    detection: "Infected plants show yellow, curled leaves and stunted growth. The fruit is often misshapen and of poor quality.",
+    cure: "There is no cure for TYLCV once a plant is infected. Control relies on managing whitefly populations with insecticides and removing infected plants.",
+    danger: "TYLCV is highly dangerous to tomatoes, often leading to significant yield loss and poor-quality fruit."
+  },
+
+  "tomato tomato mosaic virus": {
+    response: "Tomato mosaic virus (ToMV) causes mosaic patterns on tomato leaves, with yellow and green areas, leading to stunted growth and reduced fruit quality.",
+    detection: "Look for yellowing and mottling of leaves. Infected plants may also show deformed or small fruit.",
+    cure: "There is no cure for tomato mosaic virus. Prevention involves planting resistant varieties and controlling aphids, which spread the virus.",
+    danger: "Tomato mosaic virus can significantly reduce tomato yields and fruit quality, making it a serious concern for growers."
+  },
+
+      // Add more diseases here...
+    };
+  
+    // Greetings and casual responses
+    const greetings = {
+     "hi":"hello user",
+        "hello": "Hi! How can I help you with plant protection today?",
+        "what is plant disease?": "A plant disease is any harmful condition that disrupts the normal functioning of a plant. It can be caused by bacteria, fungi, viruses, or environmental stress.",
+        "how to treat plant diseases?": "Treatment depends on the type of disease. Common methods include using fungicides, bactericides, proper watering, and removing infected parts.",
+        "help me identify a disease": "Please upload a photo of the plant, and I will try to assist with identifying the disease.",
+        "thank you": "You're welcome! Feel free to ask if you have more questions.",
+        "bye": "Goodbye! Stay safe and keep your plants healthy!",
+        "what's the weather?": "I can’t provide weather information, but you can check a weather app for the latest updates.",
+        "can you help me with pests?": "Yes, I can give tips on handling common plant pests like aphids, caterpillars, and more.",
+        "what is plant care?": "Plant care involves proper watering, sunlight, soil, and protection from pests and diseases to ensure healthy plant growth.",
+        "how do I know if my plant has a disease?": "Look for discolored, spotted, or wilting leaves, or unusual growth patterns. If unsure, you can upload a photo and I'll try to help.",
+        "what are the common plant diseases?": "Some common plant diseases include powdery mildew, rust, blight, and leaf spot. They can be caused by fungi, bacteria, or viruses.",
+        "can I use neem oil for plant diseases?": "Yes, neem oil is a natural pesticide and fungicide that works well on a variety of plant diseases, especially fungal infections.",
+        "how often should I water my plants?": "The watering needs of plants vary based on the type. In general, water when the top inch of soil is dry. Avoid overwatering to prevent root rot.",
+        "what is the best soil for indoor plants?": "Well-draining, loamy soil with organic matter is ideal for most indoor plants. Make sure to choose a soil mix that suits the specific needs of your plant.",
+        "why are my plant leaves turning yellow?": "Yellowing leaves can be a sign of overwatering, underwatering, nutrient deficiency, or disease. Check the plant's watering schedule and soil conditions.",
+        "how to prevent fungal diseases in plants?": "To prevent fungal diseases, ensure good air circulation, avoid overhead watering, and remove infected plant parts immediately. Fungicides can also help.",
+        "how do I deal with aphids?": "Aphids can be controlled by using insecticidal soap, neem oil, or by introducing natural predators like ladybugs.",
+        "can I use chemical pesticides?": "While chemical pesticides can be effective, it's better to use them as a last resort. Consider organic solutions like neem oil or insecticidal soap first.",
+        "why is my plant wilting?": "Wilting can be caused by underwatering, overwatering, or environmental stress. Check the soil moisture, and make sure the plant isn't sitting in standing water.",
+        "how to revive a dying plant?": "To revive a dying plant, assess its needs—check for water, light, and pest issues. Prune dead or damaged leaves, and repot if necessary.",
+        "what is root rot?": "Root rot is a fungal condition caused by overwatering, where plant roots decay due to lack of oxygen. To fix it, trim the rotting roots and let the plant dry out before repotting.",
+        "how to propagate plants?": "Propagation methods vary by plant. Common techniques include taking cuttings and rooting them in water or soil, or dividing the plant's root ball.",
+        "what are the signs of overwatering?": "Signs of overwatering include yellowing leaves, wilting, root rot, and moldy or soggy soil. Make sure your pot has drainage holes.",
+        "what are common pests on plants?": "Common pests include aphids, spider mites, whiteflies, and mealybugs. Regularly check your plants for signs of pests and take action immediately.",
+        "how can I improve my plant's growth?": "To promote healthy growth, ensure your plant gets the right amount of light, water, and nutrients. Fertilize during the growing season, and prune regularly.",
+        "can I use compost for my plants?": "Yes! Compost provides valuable nutrients and improves soil structure. It’s excellent for enhancing plant growth and soil health.",
+        "how to prevent root rot?": "To prevent root rot, make sure the pot has proper drainage, avoid overwatering, and ensure the plant is in well-draining soil.",
+        "why are my plant leaves turning brown?": "Brown leaves could be due to overwatering, under-watering, low humidity, or sunburn. Adjust watering and check the plant's light needs.",
+        "how do I make my plants thrive?": "Provide your plants with appropriate light, water, soil, and nutrients. Keep an eye out for pests or diseases, and adjust care as needed.",
+        "how to remove whiteflies?": "To remove whiteflies, use insecticidal soap, neem oil, or wipe the undersides of leaves with a damp cloth. You can also introduce natural predators like ladybugs.",
+        "what is chlorosis in plants?": "Chlorosis is a condition where the plant's leaves turn yellow due to nutrient deficiencies, poor soil drainage, or root issues. Fixing the root cause can help.",
+        "can I reuse soil?": "You can reuse soil, but it should be refreshed by adding compost or other organic matter. Remove any plant debris, and check for signs of pests or disease.",
+        "why are my plant roots exposed?": "Exposed roots can occur due to soil erosion or improper potting. If possible, add more soil around the base of the plant to cover the roots.",
+    };
+  
+    function getBotResponse(userMessage) {
+      const defaultResponse = "I'm sorry, I didn't understand that. Can you please ask about plant diseases?";
+  
+      // Normalize user input and tokenize it
+      const tokens = userMessage.toLowerCase().split(/\s+/).filter(token => !stopwords.includes(token));
+  
+      // Check for exact matches in greetings
+      for (let greet in greetings) {
+        if (userMessage.toLowerCase().includes(greet)) {
+          return greetings[greet];
+        }
+      }
+  
+      // Match tokens with keys in the responses object
+      for (let key in responses) {
+        const keyTokens = key.toLowerCase().split(/\s+/); // Tokenize disease names
+        if (tokens.some(token => keyTokens.includes(token))) {
+          const disease = responses[key];
+          return `${disease.response} Detection: ${disease.detection} Cure: ${disease.cure} Danger: ${disease.danger}`;
+        }
+      }
+  
+      // Return the default response if no match is found
+      return defaultResponse;
+    }
+  </script>
+  
+  
+</body>
+</html>

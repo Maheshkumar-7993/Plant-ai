@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Protect - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('index') }}">
+                <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+                <li><a href="{{ url_for('pestmart') }}">Pestmart</a></li>
+                <li><a href="{{ url_for('resource') }}">Resources</a></li>
+                
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Customer Support</a></li>
+                <li><a href="{{ url_for('diseases') }}">Diseases Info</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Slider -->
+    <section class="hero">
+        <div class="slider-container">
+            <div class="slides">
+                <div class="slide">
+                    <img src="https://i.ibb.co/sWtP4w4/slide11.png" alt="Slide 1">
+                </div>
+                <div class="slide">
+                    <img src="https://i.ibb.co/ykHn9DT/slide2.png" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="https://i.ibb.co/ZgvSWhz/slide3.png" alt="Slide 3">
+                </div>
+                <div class="slide">
+                    <img src="https://i.ibb.co/0VxCQ9r/slide4.png" alt="Slide 4">
+                </div>
+            </div>
+            <div class="indicators">
+                <span class="dot" onclick="setSlide(0)"></span>
+                <span class="dot" onclick="setSlide(1)"></span>
+                <span class="dot" onclick="setSlide(2)"></span>
+                <span class="dot" onclick="setSlide(3)"></span>
+            </div>
+        </div>
+        <div class="hero-text">
+            <h1>Protect the Plant, Protect Yourself</h1>
+            <p>Upload an image to detect plant health using advanced machine learning.</p>
+            <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" required>
+                <button type="submit" class="btn">Get Started</button>
+            </form>
+            
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <i class="fas fa-upload"></i>
+                <h3>Step 1</h3>
+                <p>Upload a clear image of your plant's leaves.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-brain"></i>
+                <h3>Step 2</h3>
+                <p>Our ML model analyzes the image.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-leaf"></i>
+                <h3>Step 3</h3>
+                <p>Receive an accurate diagnosis and tips for care.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Plant Protect. All rights reserved.</p>
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+    </footer>
+
+    <!-- Inline CSS (optional) -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            color: black;
+            padding: 20px 0;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 400px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #4CAF50;
+        }
+
+        .hero-text {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .step {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .step i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+
+        footer {
+            background: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        
+        
+        const slides = document.querySelector('.slides');
+        const dots = document.querySelectorAll('.dot');
+        let index = 0;
+
+        function showSlide(n) {
+            index = n;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function setSlide(n) {
+            showSlide(n);
+        }
+
+        function autoSlide() {
+            index = (index + 1) % slides.children.length;
+            showSlide(index);
+        }
+
+        setInterval(autoSlide, 3000); // Change slide every 3 seconds
+        updateDots();
+    </script>
+</body>
+</html>

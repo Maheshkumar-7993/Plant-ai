@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Protect - Upload</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+    #uploaded-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="support.html">Customer Support</a></li>
+                <li><a href="diseases.html">Diseases Info</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Image Upload Section -->
+    <section id="upload-section">
+        <h2>Upload Plant Image</h2>
+        <form id="upload-form">
+            <input type="file" id="image-upload" accept="image/*" required>
+            <button type="button" id="upload-btn" class="btn">Upload</button>
+        </form>
+        <div id="progress-container">
+            <p>Uploading...</p>
+            <div id="progress-bar"></div>
+        </div>
+        <div id="uploaded-image-container">
+            <h3>Uploaded Image:</h3>
+            <img id="uploaded-image" alt="Uploaded Plant" style="display: none;">
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Plant Protect. All rights reserved.</p>
+        <a href="contact.html">Contact Us</a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="uploadjs.js"></script>
+</body>
+</html>

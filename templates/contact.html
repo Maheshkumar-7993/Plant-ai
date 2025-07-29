@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Plant Protect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+        }
+        .contact-center {
+            text-align: center;
+            padding: 20px;
+        }
+        .contact-center h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+        .contact-options div {
+            text-align: left;
+        }
+        .contact-options div h3 {
+            margin-bottom: 5px;
+        }
+        .faq-section {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .faq-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .faq-search input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .faq-questions {
+            margin-top: 20px;
+        }
+        .faq-item {
+            margin-bottom: 10px;
+        }
+        .faq-item button {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            background: #f1f1f1;
+            border: none;
+            cursor: pointer;
+        }
+        .faq-item button:focus {
+            outline: none;
+        }
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            font-size: 0.9rem;
+            background: #f9f9f9;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Customer Support</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-center">
+        <h1>Connect with Us</h1>
+        <div class="contact-options">
+            <div>
+                <h3>Email</h3>
+                <p>For support or inquiries:</p>
+                <p><a href="mailto:support@plantprotect.com">support@plantprotect.com</a></p>
+            </div>
+            <div>
+                <h3>Call</h3>
+                <p>Immediate assistance:</p>
+                <p>+91 7993576517/p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-search">
+            <input type="text" placeholder="Search question here">
+        </div>
+        <div class="faq-questions">
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">What is Plant Protect? <span>&#x25BC;</span></button>
+                <div class="faq-answer">
+                    Plant Protect is an AI-based system that helps detect plant diseases using images of leaves.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">How do I upload an image? <span>&#x25BC;</span></button>
+                <div class="faq-answer">
+                    You can upload an image by visiting the "Home" section and using the upload feature provided.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">What types of plant diseases can be detected? <span>&#x25BC;</span></button>
+                <div class="faq-answer">
+                    Our system can detect common diseases for a variety of plants, including tomato, potato, and corn leaf diseases.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">Is Plant Protect free to use? <span>&#x25BC;</span></button>
+                <div class="faq-answer">
+                    Yes, Plant Protect offers free basic usage for plant disease detection.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Plant Protect. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleAnswer(button) {
+            const item = button.parentElement;
+            item.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

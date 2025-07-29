@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Information - Plant Protect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f8f4;
+        }
+        header {
+            background-color: #2d572c;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+        .disease-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+        .disease-card {
+            background: white;
+            width: 45%;
+            padding: 20px;
+            border: 3px solid #2d572c;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        .disease-card h2 {
+            color: #1a4d22;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .disease-card p {
+            margin: 5px 0;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        footer {
+            background-color: #2d572c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌱 Plant Disease Information for Farmers</h1>
+        <p>Find symptoms, causes, and solutions to protect your crops.</p>
+    </header>
+
+    <div class="disease-container">
+        <div class="disease-card">
+            <h2>1. Apple Scab</h2>
+            <p><strong>Symptoms:</strong> Dark spots on leaves and fruit.</p>
+            <p><strong>Cause:</strong> Fungus <i>Venturia inaequalis</i>.</p>
+            <p><strong>Solution:</strong> Remove fallen leaves and spray fungicide.</p>
+        </div>
+        <div class="disease-card">
+            <h2>2. Apple Black Rot</h2>
+            <p><strong>Symptoms:</strong> Circular black spots on fruit and branches.</p>
+            <p><strong>Cause:</strong> Fungus <i>Botryosphaeria obtusa</i>.</p>
+            <p><strong>Solution:</strong> Prune affected areas and apply fungicide.</p>
+        </div>
+        <div class="disease-card">
+            <h2>3. Apple Cedar Rust</h2>
+            <p><strong>Symptoms:</strong> Orange spots on leaves, causing leaf drop.</p>
+            <p><strong>Cause:</strong> Fungus from junipers.</p>
+            <p><strong>Solution:</strong> Remove nearby junipers and spray fungicide.</p>
+        </div>
+        <div class="disease-card">
+            <h2>4. Cherry Powdery Mildew</h2>
+            <p><strong>Symptoms:</strong> White powder on leaves and fruits.</p>
+            <p><strong>Cause:</strong> Fungus <i>Podosphaera clandestina</i>.</p>
+            <p><strong>Solution:</strong> Improve airflow and use sulfur-based fungicides.</p>
+        </div>
+        <div class="disease-card">
+            <h2>5. Corn Gray Leaf Spot</h2>
+            <p><strong>Symptoms:</strong> Gray lesions on leaves.</p>
+            <p><strong>Cause:</strong> Fungus <i>Cercospora zeae-maydis</i>.</p>
+            <p><strong>Solution:</strong> Crop rotation and fungicide application.</p>
+        </div>
+        <div class="disease-card">
+            <h2>6. Grape Black Rot</h2>
+            <p><strong>Symptoms:</strong> Black spots on leaves and fruit.</p>
+            <p><strong>Cause:</strong> Fungus <i>Guignardia bidwellii</i>.</p>
+            <p><strong>Solution:</strong> Remove infected fruit and use fungicides.</p>
+        </div>
+        <div class="disease-card">
+            <h2>7. Peach Bacterial Spot</h2>
+            <p><strong>Symptoms:</strong> Water-soaked spots on fruit.</p>
+            <p><strong>Cause:</strong> Bacteria <i>Xanthomonas campestris</i>.</p>
+            <p><strong>Solution:</strong> Use copper sprays and avoid overhead watering.</p>
+        </div>
+        <div class="disease-card">
+            <h2>8. Potato Early Blight</h2>
+            <p><strong>Symptoms:</strong> Brown spots with rings on leaves.</p>
+            <p><strong>Cause:</strong> Fungus <i>Alternaria solani</i>.</p>
+            <p><strong>Solution:</strong> Rotate crops and apply fungicide.</p>
+        </div>
+        <div class="disease-card">
+            <h2>9. Potato Late Blight</h2>
+            <p><strong>Symptoms:</strong> Water-soaked lesions on leaves.</p>
+            <p><strong>Cause:</strong> Fungus <i>Phytophthora infestans</i>.</p>
+            <p><strong>Solution:</strong> Remove infected plants and spray fungicides.</p>
+        </div>
+        <div class="disease-card">
+            <h2>10. Tomato Leaf Mold</h2>
+            <p><strong>Symptoms:</strong> Yellow spots on top, mold underneath leaves.</p>
+            <p><strong>Cause:</strong> Fungus <i>Passalora fulva</i>.</p>
+            <p><strong>Solution:</strong> Increase airflow and use fungicides.</p>
+        </div>
+        <div class="disease-card">
+            <h2>11. Tomato Target Spot</h2>
+            <p><strong>Symptoms:</strong> Brown spots with rings on fruit and leaves.</p>
+            <p><strong>Cause:</strong> Fungus <i>Corynespora cassiicola</i>.</p>
+            <p><strong>Solution:</strong> Remove infected parts and use copper sprays.</p>
+        </div>
+        <div class="disease-card">
+            <h2>12. Tomato Mosaic Virus</h2>
+            <p><strong>Symptoms:</strong> Mottled leaves and poor fruit quality.</p>
+            <p><strong>Cause:</strong> Virus spread by contaminated tools.</p>
+            <p><strong>Solution:</strong> Use clean tools and destroy affected plants.</p>
+        </div>
+        <div class="disease-card">
+            <h2>13. Tomato Yellow Leaf Curl Virus</h2>
+            <p><strong>Symptoms:</strong> Yellowing and curling of leaves.</p>
+            <p><strong>Cause:</strong> Virus spread by whiteflies.</p>
+            <p><strong>Solution:</strong> Control whiteflies and plant resistant varieties.</p>
+        </div>
+        <div class="disease-card">
+            <h2>14. Strawberry Leaf Scorch</h2>
+            <p><strong>Symptoms:</strong> Purple blotches on leaves.</p>
+            <p><strong>Cause:</strong> Fungus.</p>
+            <p><strong>Solution:</strong> Remove affected leaves and apply fungicides.</p>
+        </div>
+        <div class="disease-card">
+            <h2>15. Healthy Plant</h2>
+            <p><strong>Tip:</strong> Check crops regularly, maintain soil health, and use proper irrigation techniques.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Plant Protect. All rights reserved.</p>
+    </footer>
+</body>
+</html>

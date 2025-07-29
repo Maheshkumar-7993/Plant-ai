@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Plant Protect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+        }
+
+        nav ul li a.active, nav ul li a:hover {
+            background-color: #45a049;
+            border-radius: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://i.ibb.co/7bnhg0q/freepik-the-style-is-candid-image-photography-with-natural-72925.png" alt="Plant Protect Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="active">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Customer Support</a></li>
+                <li><a href="{{ url_for('diseases') }}">Diseases Info</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="content">
+        <h1>About Us</h1>
+        <div class="cards">
+            <div class="card">
+                <h2>Our Mission</h2>
+                <p>Our mission at Plant Protect is to empower farmers and plant enthusiasts with cutting-edge AI solutions for plant health diagnostics, ensuring better crop yield and sustainability.</p>
+            </div>
+            <div class="card">
+                <h2>Our Technology</h2>
+                <p>We leverage advanced machine learning models to detect plant diseases from images, providing instant feedback and actionable insights to help you take preventive measures.</p>
+            </div>
+            <div class="card">
+                <h2>Our Vision</h2>
+                <p>We envision a world where technology bridges the gap between agriculture and innovation, making plant care smarter, faster, and more accessible for everyone.</p>
+            </div>
+            <div class="card">
+                <h2>Our Team</h2>
+                <p>Our dedicated team consists of AI experts, agriculturists, and tech enthusiasts who are passionate about revolutionizing plant health management.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Plant Protect. All rights reserved.</p>
+    </footer>
+</body>
+</html>
