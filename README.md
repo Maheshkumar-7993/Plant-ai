@@ -1,4 +1,4 @@
-# o🌿 Plant Disease Detection Website
+# o🌿 Plant Disease Detection application
 
 This project is a web-based application for detecting plant diseases using AI vision. Users can upload images of plant leaves, and the system will predict the disease and display possible solutions. The project leverages machine learning, Flask, and a user-friendly frontend for seamless interaction.
 
@@ -89,7 +89,7 @@ This project is a web-based application for detecting plant diseases using AI vi
 - **File**: `cnn_model.h5`
 - **Model Architecture**: CNN
 - **Framework**: TensorFlow/Keras
-- **Accuracy**: 94% on test data
+- **Accuracy**: 92% on test data
 
 ---
 
@@ -107,6 +107,7 @@ This project is a web-based application for detecting plant diseases using AI vi
 
 - Infosys Springboard for project guidance.
 - Open-source tools and libraries used in the project.
+
 
 
 
